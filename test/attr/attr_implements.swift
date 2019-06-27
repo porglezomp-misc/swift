@@ -1,4 +1,4 @@
-// RUN: %target-run-simple-swift %s
+// RUN: %target-run-simple-swift
 // REQUIRES: executable_test
 
 protocol P {

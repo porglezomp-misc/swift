@@ -1,4 +1,4 @@
-// RUN: %target-run-simple-swift %t
+// RUN: %target-run-simple-swift
 // REQUIRES: executable_test
 // UNSUPPORTED: OS=windows-msvc
 
