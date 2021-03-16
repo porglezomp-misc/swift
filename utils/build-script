@@ -1319,6 +1319,9 @@ def main_normal():
         toolchain.libtool = args.host_libtool
     if args.cmake is not None:
         toolchain.cmake = args.cmake
+    if args.sccache:
+        print("Ensuring the sccache server is running...")
+        shell.capture([toolchain.sccache, "--show-stats"], stderr=shell.DEVNULL)
 
     cmake = CMake(args=args, toolchain=toolchain)
     # Check the CMake version is sufficient on Linux and build from source
