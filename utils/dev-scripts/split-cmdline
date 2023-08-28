@@ -77,11 +77,14 @@ def main():
             # A hard-coded list of options which expect a parameter
             is_arg_param = arg in [
                 "--sdk",
+                "--serialize-diagnostics",
                 "--toolchain",
                 "-D",
                 "-F",
                 "-I",
                 "-L",
+                "-MF",
+                "-MT",
                 "-Xcc",
                 "-Xclang",
                 "-Xfrontend",
@@ -89,6 +92,8 @@ def main():
                 "-Xllvm",
                 "-add_ast_path",
                 "-arch",
+                "-darwin-target-variant-triple",
+                "-dwarf-debug-flags",
                 "-emit-ir",
                 "-emit-sil",
                 "-ferror-limit",
@@ -100,13 +105,16 @@ def main():
                 "-iframework",
                 "-import-objc-header",
                 "-include",
+                "-include-pch",
                 "-internal-externc-isystem",
                 "-internal-isystem",
                 "-iquote",
                 "-isysroot",
+                "-isystem",
                 "-ivfsoverlay",
                 "-macosx_version_min",
                 "-main-file-name",
+                "-mllvm",
                 "-module-link-name",
                 "-module-name",
                 "-mrelocation-model",
@@ -114,7 +122,6 @@ def main():
                 "-o",
                 "-output-file-map",
                 "-pic-level",
-                "-primary-file",
                 "-resource-dir",
                 "-rpath",
                 "-sdk",
@@ -127,12 +134,14 @@ def main():
                 "-target-feature",
                 "-target-linker-version",
                 "-target-sdk-version",
+                "-target-variant",
                 "-triple",
+                "-tune-cpu",
                 "-working-directory",
                 "-x",
             ]
-            # Heuristic: options ending in -path expect an argument
-            if arg.startswith("-") and arg.endswith("-path"):
+            # Heuristic: options ending in -path or -file expect an argument
+            if arg.startswith("-") and (arg.endswith("-path") or arg.endswith("-file")):
                 is_arg_param = True
 
         # Print 2 new lines after each command line
